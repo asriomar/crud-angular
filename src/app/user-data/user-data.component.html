@@ -1,21 +1,28 @@
 <div class="w-2/3 mx-auto bg-gray-100 px-4 py-3 flex flex-col gap-3 mt-5 rounded-lg drop-shadow-2xl">
 
-<h2 class="mx-auto text-2xl underline text-indigo-500">User Management Form</h2>
+<h2 class="mx-auto text-2xl font-bold  text-indigo-500">User Management Form</h2>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="flex flex-col">
-  <label for="name">Name:</label>
-  <input class="ring-[0.5px] px-3" id="name" formControlName="name" type="text" />
-  <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
+
+<div class="flex gap-2">
+    <label for="name">Name:</label>
+  <input class="ring-[0.5px] px-3 w-2/3 text-2xl" id="name" formControlName="name" type="text" />
+</div>
+  
+  <div class="text-sm text-red-500" *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
     Name is required
   </div>
 
-  <label for="email">Email:</label>
-  <input class="ring-[0.5px] px-3" id="email" formControlName="email" type="email" />
-  <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+  <div class="flex gap-2 ">
+    <label for="email">Email:</label>
+    <input class="ring-[0.5px] px-3 w-4/5 text-2xl" id="email" formControlName="email" type="email" />
+  </div>
+  
+  <div class="text-sm text-red-500" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
     A valid email is required
   </div>
 
-  <button class="mx-auto w-1/6 hover:text-white bg-blue-400 rounded-full  my-3 py-2 px-4 " type="submit">{{ isEditMode ? 'Update' : 'Add' }} User</button>
+  <button class="mx-auto w-1/6 hover:ring ring-black hover:ring-[0.5px] hover:text-white bg-blue-400 rounded-full  my-3 py-2 px-4 " type="submit">{{ isEditMode ? 'Update' : 'Add' }} User</button>
 </form>
 
 <h3 class="underline text-xl">Users List</h3>
