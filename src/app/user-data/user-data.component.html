@@ -1,0 +1,25 @@
+<h2>User Management Form</h2>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" type="text" />
+  <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+    Name is required
+  </div>
+
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" type="email" />
+  <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+    A valid email is required
+  </div>
+
+  <button type="submit">{{ isEditMode ? 'Update' : 'Add' }} User</button>
+</form>
+
+<h3>Users List</h3>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.name }} ({{ user.email }})
+    <button (click)="editUser(user.id)">Edit</button>
+    <button (click)="deleteUser(user.id)">Delete</button>
+  </li>
+</ul>
