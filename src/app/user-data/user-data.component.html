@@ -1,25 +1,39 @@
-<h2>User Management Form</h2>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<div class="w-2/3 mx-auto bg-gray-100 px-4 py-3 flex flex-col gap-3 mt-5 rounded-lg drop-shadow-2xl">
+
+<h2 class="mx-auto text-2xl">User Management Form</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="flex flex-col">
   <label for="name">Name:</label>
-  <input id="name" formControlName="name" type="text" />
+  <input class="ring-[0.5px] px-3" id="name" formControlName="name" type="text" />
   <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
     Name is required
   </div>
 
   <label for="email">Email:</label>
-  <input id="email" formControlName="email" type="email" />
+  <input class="ring-[0.5px] px-3" id="email" formControlName="email" type="email" />
   <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
     A valid email is required
   </div>
 
-  <button type="submit">{{ isEditMode ? 'Update' : 'Add' }} User</button>
+  <button class="w-1/6 hover:text-white bg-blue-400 rounded-full  my-3 py-2 px-4 " type="submit">{{ isEditMode ? 'Update' : 'Add' }} User</button>
 </form>
 
-<h3>Users List</h3>
-<ul>
-  <li *ngFor="let user of users">
-    {{ user.name }} ({{ user.email }})
-    <button (click)="editUser(user.id)">Edit</button>
-    <button (click)="deleteUser(user.id)">Delete</button>
-  </li>
-</ul>
+<h3 class="underline text-xl">Users List</h3>
+<div class="flex flex-row gap-3">
+    <ul >
+        
+    <li *ngFor="let user of users" class="grid grid-cols-2 gap-3 my-2">
+        <div class="flex gap-2 my-2">
+            {{ user.name }} ({{ user.email }})  
+        </div>
+        <div class="flex gap-3">
+            <button class="bg-lime-500 px-4 " (click)="editUser(user.id)">Edit</button>
+            <button class="bg-red-500 px-4  " (click)="deleteUser(user.id)">Delete</button>
+        </div>
+       
+    </li>
+    </ul>
+</div>
+
+</div>
+
